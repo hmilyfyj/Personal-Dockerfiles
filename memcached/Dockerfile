@@ -1,0 +1,7 @@
+FROM daocloud.io/library/centos:7
+
+RUN yum install memcached
+
+EXPOSE 11211
+
+CMD ['/usr/local/bin/memcached -d -m 1024 -u root -p 11211 -P /tmp/memcached.pid']
