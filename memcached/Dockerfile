@@ -1,6 +1,6 @@
 FROM daocloud.io/library/centos:7
 
-RUN yum install memcached
+RUN yum install memcached -y
 
 EXPOSE 11211
 
