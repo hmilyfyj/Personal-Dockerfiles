@@ -1,4 +1,4 @@
-FROM centos:7
+FROM daocloud.io/library/centos:7
 MAINTAINER Skiychan <dev@skiy.net>
 ##
 # Nginx: 1.9.14
