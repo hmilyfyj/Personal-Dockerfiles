@@ -129,6 +129,13 @@ RUN	cd /home/nginx-php/php-$PHP_VERSION && \
     cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf && \
     cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
 
+# vhost
+RUN mkdir /etc/nginx/sites-enabled/ -p && mkdir /etc/nginx/sites-available/ -p
+Add vhost-nginx.sh /usr/local/bin/vhost.sh
+Add nginx-ci.conf /usr/local/nginx/conf/nginx-ci.conf
+Add nginx-laravel.conf /usr/local/nginx/conf/nginx-laravel.conf
+
+
 #Install supervisor
 RUN easy_install supervisor && \
     mkdir -p /var/log/supervisor && \
@@ -157,9 +164,12 @@ RUN cp /usr/local/php/bin/php /usr/bin/php
 #Install Composer
 RUN curl -sS https://getcomposer.org/installer \
         | php -- --install-dir=/usr/local/bin --filename=composer && \
-        composer global require "laravel/installer"
+        composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
+        echo "export PATH=$PATH:/usr/local/php/bin:/root/.composer/vendor/bin" >> ~/.bashrc && \
+        composer global require "laravel/installer" 
 
 #Install Memcached support
+#COPY libevent-2.0.22-stable.tar.gz /tmp/libevent-2.0.22-stable.tar.gz
 
 #Start
 ADD start.sh /start.sh
