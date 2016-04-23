@@ -4,4 +4,4 @@ RUN yum install memcached -y
 
 EXPOSE 11211
 
-CMD ['/usr/local/bin/memcached -d -m 1024 -u root -p 11211 -P /tmp/memcached.pid', '']
+CMD ['/usr/local/bin/memcached', '']
