@@ -114,14 +114,15 @@ RUN cd /home/nginx-php && \
     --without-pear && \
     make && make install
 
+
 #Add xdebug extension
-RUN cd /home/nginx-php && \
-    tar -zxvf XDEBUG_2_4_0RC3.tar.gz && \
-    cd xdebug-XDEBUG_2_4_0RC3 && \
-    /usr/local/php/bin/phpize && \
-    ./configure --enable-xdebug --with-php-config=/usr/local/php/bin/php-config && \
-    make && \
-    cp modules/xdebug.so /usr/local/php/lib/php/extensions/xdebug.so
+#RUN cd /home/nginx-php && \
+#    tar -zxvf XDEBUG_2_4_0RC3.tar.gz && \
+ #   cd xdebug-XDEBUG_2_4_0RC3 && \
+ #   /usr/local/php/bin/phpize && \
+#    ./configure --enable-xdebug --with-php-config=/usr/local/php/bin/php-config && \
+#    make && \
+#    cp modules/xdebug.so /usr/local/php/lib/php/extensions/xdebug.so
 
 RUN	cd /home/nginx-php/php-$PHP_VERSION && \
     cp php.ini-production /usr/local/php/etc/php.ini && \
@@ -148,6 +149,13 @@ ADD xdebug.ini /usr/local/php/etc/php.d/xdebug.ini
 
 #Update nginx config
 ADD nginx.conf /usr/local/nginx/conf/nginx.conf
+
+RUN cp /usr/local/bin/php /usr/bin/php
+
+#Install Composer
+RUN curl -sS https://getcomposer.org/installer \
+        | php -- --install-dir=/usr/local/bin --filename=composer && \
+        composer global require "laravel/installer"
 
 #Start
 ADD start.sh /start.sh
