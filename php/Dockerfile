@@ -17,6 +17,7 @@ RUN yum install -y gcc \
     libtool \
     make \
     cmake && \
+    git && \
     yum clean all
 
 #Install PHP library
@@ -134,6 +135,7 @@ RUN mkdir /etc/nginx/sites-enabled/ -p && mkdir /etc/nginx/sites-available/ -p
 Add vhost-nginx.sh /usr/local/bin/vhost.sh
 Add nginx-ci.conf /usr/local/nginx/conf/nginx-ci.conf
 Add nginx-laravel.conf /usr/local/nginx/conf/nginx-laravel.conf
+RUN chmod +x /usr/local/bin/vhost.sh
 
 
 #Install supervisor
@@ -161,7 +163,7 @@ ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 # 
 RUN cp /usr/local/php/bin/php /usr/bin/php
 
-#Install Composer
+#Install Composer & Laravel
 RUN curl -sS https://getcomposer.org/installer \
         | php -- --install-dir=/usr/local/bin --filename=composer && \
         composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
@@ -170,6 +172,18 @@ RUN curl -sS https://getcomposer.org/installer \
 
 #Install Memcached support
 #COPY libevent-2.0.22-stable.tar.gz /tmp/libevent-2.0.22-stable.tar.gz
+RUN cd /tmp && \ 
+	wget https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz && \ 
+	tar -zxvf libmemcached-1.0.18.tar.gz && \ 
+	cd libmemcached-1.0.18 && \ 
+	./configure --prefix=/usr/local/libmemcached && \ 
+	make && make instal && \
+	cd /tmp && \
+	git clone https://github.com/php-memcached-dev/php-memcached -b php7 && \
+	cd php-memcached && phpize && \ 
+	./configure --with-libmemcached-dir=/usr/local/libmemcached --with-php-config=/usr/local/php/bin/php-config --disable-memcached-sasl && \ 
+	make && make install
+	
 
 #Start
 ADD start.sh /start.sh
