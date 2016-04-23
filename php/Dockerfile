@@ -143,6 +143,7 @@ RUN cd / && rm -rf /home/nginx-php
 
 #Create web folder
 VOLUME ["/data/www", "/usr/local/nginx/conf/ssl", "/usr/local/nginx/conf/vhost", "/usr/local/php/etc/php.d"]
+
 ADD index.php /data/www/index.php
 
 ADD xdebug.ini /usr/local/php/etc/php.d/xdebug.ini
@@ -150,12 +151,15 @@ ADD xdebug.ini /usr/local/php/etc/php.d/xdebug.ini
 #Update nginx config
 ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 
-RUN cp /usr/local/bin/php /usr/bin/php
+# 
+RUN cp /usr/local/php/bin/php /usr/bin/php
 
 #Install Composer
 RUN curl -sS https://getcomposer.org/installer \
         | php -- --install-dir=/usr/local/bin --filename=composer && \
         composer global require "laravel/installer"
+
+#Install Memcached support
 
 #Start
 ADD start.sh /start.sh
