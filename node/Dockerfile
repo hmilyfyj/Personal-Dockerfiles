@@ -7,10 +7,11 @@ RUN yum -y install git &&  \
 
 # 安装 Nvm
 RUN mkdir -p ~/git && \
+	cd ~/git && \
 	git clone https://github.com/creationix/nvm.git && \
 	echo "source ~/git/nvm/nvm.sh" >> ~/.bashrc && \
 	echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist" >> ~/.bashrc && \
-	nvm install v5.1.0
+	source ~/.bashrc && nvm install v5.1.0
 
 # 安装 Hexo
 RUN npm install hexo-cli -g
