@@ -161,7 +161,7 @@ ADD xdebug.ini /usr/local/php/etc/php.d/xdebug.ini
 ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 
 # 
-RUN cp /usr/local/php/bin/php /usr/bin/php
+RUN cp /usr/local/php/bin/php /usr/bin/php && /usr/local/php/bin/phpize /usr/bin/phpize
 
 #Install Composer & Laravel
 RUN curl -sS https://getcomposer.org/installer \
