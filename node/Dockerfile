@@ -32,7 +32,7 @@ RUN touch /var/spool/cron/root && \
 
 
 # 脚本
-Add hexo.sh ~/hexo.sh
-RUN chmod +x ~/hexo.sh
+Add hexo.sh /root/hexo.sh
+RUN chmod +x /root/hexo.sh
 
 #ENTRYPOINT ["/root/hexo.sh"]
