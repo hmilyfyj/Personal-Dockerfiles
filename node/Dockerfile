@@ -12,10 +12,8 @@ RUN mkdir -p ~/git && \
 	echo "source ~/git/nvm/nvm.sh" >> ~/.bashrc && \
 	echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist" >> ~/.bashrc && \
 	source ~/.bashrc && nvm install v5.1.0 && nvm use v5.1.0 && \
-	echo "nvm use v5.1.0" >> ~/.bashrc
-
-# 安装 Hexo
-RUN npm install hexo-cli -g
+	echo "nvm use v5.1.0" >> ~/.bashrc && \
+	npm install hexo-cli -g
 
 # 生成无密码 ssh key
 RUN echo "id_rsa" | ssh-keygen -t rsa -N "" && cat /root/.ssh/id_rsa.pub
