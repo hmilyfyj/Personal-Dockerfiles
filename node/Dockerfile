@@ -11,7 +11,8 @@ RUN mkdir -p ~/git && \
 	git clone https://github.com/creationix/nvm.git && \
 	echo "source ~/git/nvm/nvm.sh" >> ~/.bashrc && \
 	echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist" >> ~/.bashrc && \
-	source ~/.bashrc && nvm install v5.1.0
+	source ~/.bashrc && nvm install v5.1.0 && nvm use v5.1.0 && \
+	echo "nvm use v5.1.0" >> ~/.bashrc
 
 # 安装 Hexo
 RUN npm install hexo-cli -g
