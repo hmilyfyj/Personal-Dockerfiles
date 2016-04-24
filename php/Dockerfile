@@ -161,7 +161,7 @@ ADD xdebug.ini /usr/local/php/etc/php.d/xdebug.ini
 ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 
 # 
-RUN cp /usr/local/php/bin/php /usr/bin/php && cp /usr/local/php/bin/phpize /usr/bin/phpize
+RUN ln -s /usr/local/php/bin/php /usr/local/bin/php && ln -s /usr/local/php/bin/phpize /usr/local/bin/phpize
 
 #Install Composer & Laravel
 RUN curl -sS https://getcomposer.org/installer \
@@ -187,7 +187,8 @@ RUN cd /tmp && \
 
 #Start
 ADD start.sh /start.sh
-RUN chmod +x /start.sh
+ADD etc_nginx /etc/init.d/nginx
+RUN chmod +x /start.sh && chmod +x /etc/init.d/nginx
 
 #Set port
 EXPOSE 80 443 9000
