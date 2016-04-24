@@ -35,4 +35,6 @@ RUN touch /var/spool/cron/root && \
 Add hexo.sh /root/hexo.sh
 RUN chmod +x /root/hexo.sh
 
+USER daemon
+
 #ENTRYPOINT ["/root/hexo.sh"]
