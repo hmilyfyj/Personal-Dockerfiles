@@ -177,7 +177,7 @@ RUN cd /tmp && \
 	tar -zxvf libmemcached-1.0.18.tar.gz && \ 
 	cd libmemcached-1.0.18 && \ 
 	./configure --prefix=/usr/local/libmemcached && \ 
-	make && make instal && \
+	make && make install && \
 	cd /tmp && \
 	git clone https://github.com/php-memcached-dev/php-memcached -b php7 && \
 	cd php-memcached && phpize && \ 
