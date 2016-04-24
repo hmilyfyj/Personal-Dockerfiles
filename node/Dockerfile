@@ -1,7 +1,7 @@
 FROM centos:7
 
 # 安装 Node
-RUN yum -y install git &&  \
+RUN yum update -y && yum -y install git crontabs &&  \
 	git config --global user.name "fengit" && \
   	git config --global user.email "fengit@outlook.com"
 
@@ -23,7 +23,8 @@ RUN echo "id_rsa" | ssh-keygen -t rsa -N ""
 VOLUME ["/data/www", "/data/blog"]
 
 # 自动检测更新、脚本
-RUN echo  "* * * * * sleep 10; /root/hexo.sh"  >> /var/spool/cron/root && \
+RUN touch /var/spool/cron/root && \
+	echo  "* * * * * sleep 10; /root/hexo.sh"  >> /var/spool/cron/root && \
 	echo  "* * * * * sleep 20; /root/hexo.sh"  >> /var/spool/cron/root && \
 	echo  "* * * * * sleep 30; /root/hexo.sh"  >> /var/spool/cron/root && \
 	echo  "* * * * * sleep 40; /root/hexo.sh"  >> /var/spool/cron/root && \
