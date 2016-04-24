@@ -1,0 +1,20 @@
+memcached:
+  image: daocloud.io/hmilyfyj/memcached:master-d9b5a85
+  expose:
+    - '11211'
+  environment:
+    - FENGBL:TEST
+php7nginx:
+  image: daocloud.io/hmilyfyj/php7_nginx:master-71385c0
+  volumes:
+    - /data/www:/data:www
+  links:
+    - memcached
+  ports:
+    - '80:80'
+    - '443:443'
+  expose:
+    - '80'
+    - '443'
+  volumes:
+    - /data/www:/data/www
