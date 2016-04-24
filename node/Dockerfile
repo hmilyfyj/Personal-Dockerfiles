@@ -16,7 +16,8 @@ RUN mkdir -p ~/git && \
 	npm install hexo-cli -g
 
 # 生成无密码 ssh key
-RUN echo "id_rsa" | ssh-keygen -t rsa -N "" && cat /root/.ssh/id_rsa.pub
+RUN echo "id_rsa" | ssh-keygen -t rsa -N "" 
+#&& cat /root/.ssh/id_rsa.pub
 
 # 共享目录 /data/blog /data/www
 VOLUME ["/data/www", "/data/blog"]
