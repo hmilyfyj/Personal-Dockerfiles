@@ -1,7 +1,8 @@
 FROM centos:7
 
 # 安装 Node
-RUN yum update -y && yum -y install git crontabs supervisor &&  \
+RUN yum update -y && yum -y install git crontabs python-setuptools &&  \
+	yum clean all && \
 	git config --global user.name "fengit" && \
   	git config --global user.email "fengit@outlook.com"
 
@@ -19,8 +20,9 @@ RUN mkdir -p ~/git && \
 RUN echo "id_rsa" | ssh-keygen -t rsa -N "" 
 #&& cat /root/.ssh/id_rsa.pub
 
-# supervior
-RUN mkdir -p /var/log/supervisor && \
+#Install supervisor
+RUN easy_install supervisor && \
+    mkdir -p /var/log/supervisor && \
     mkdir -p /var/run/sshd && \
     mkdir -p /var/run/supervisord
 
