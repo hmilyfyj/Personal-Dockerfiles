@@ -4,4 +4,4 @@ spawn mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init & git remote ad
 expect "yes/no"
 send "yes\r"
 expect eof
-interact
+exit
