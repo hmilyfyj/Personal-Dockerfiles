@@ -52,7 +52,7 @@ RUN cd /tmp && \
 	tar xzvf expect5.45.tar.gz && cd expect5.45 && \
 	./configure --prefix=/usr/local/expect --with-tcl=/usr/local/tcl/lib --with-tclinclude=../tcl8.4.20/generic && \
 	make && make install && \
-	ln -s /usr/local/tcl/bin/expect /usr/local/expect/bin/expect
+	ln -s /usr/local/tcl/bin/expect /usr/bin
 
 # 自动检测更新、脚本
 RUN touch /var/spool/cron/root && \
