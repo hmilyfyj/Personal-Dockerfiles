@@ -16,7 +16,8 @@ echo "请确认已将公钥加入仓库。"
 
 cat /root/.ssh/id_rsa.pub
 
-mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init && git remote add origin $Hexo_backup_url  && yes yes | git pull origin master
+exec /root/expect_git.sh
+#mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init & git remote add origin $Hexo_backup_url  &  git pull origin master
 
 cd /data/blog/hexo_blog/source/_posts && git init && git remote add origin $Hexo_note_url  && yes yes | git pull origin master
 
