@@ -14,7 +14,7 @@ Hexo_note_url='git@github.com:hmilyfyj/Note.git'
 #下载博客
 echo "请确认已将公钥加入仓库。"
 
-# cat /root/.ssh/id_rsa.pub
+cat /root/.ssh/id_rsa.pub
 
 
 #mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init & git remote add origin $Hexo_backup_url  &  git pull origin master
