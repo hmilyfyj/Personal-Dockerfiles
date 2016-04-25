@@ -1,8 +1,14 @@
 FROM centos:7
 MAINTAINER Feng <fengit@outlook.com>
 
+# 换源
+RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+ADD CentOS7-Base-163.repo /etc/yum.repos.d/CentOS-Base.repo
+
+
 # 安装 Node
-RUN yum update -y && yum -y install git crontabs python-setuptools wget gcc automake autoconf libtool make &&  \
+RUN yum clean all && yum update -y && \ 
+	yum -y install git crontabs python-setuptools wget gcc automake autoconf libtool make &&  \
 	yum clean all && \
 	git config --global user.name "fengit" && \
   	git config --global user.email "fengit@outlook.com"
