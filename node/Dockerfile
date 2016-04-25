@@ -18,9 +18,9 @@ RUN mkdir -p ~/git && \
 	npm install hexo-cli -g
 
 # 生成无密码 ssh key
-RUN echo "/root/.ssh/id_rsa" | ssh-keygen -t rsa -N "" 
-#&& cat /root/.ssh/id_rsa.pub
-
+RUN mkdir -p /root/.ssh && \
+	echo "/root/.ssh/id_rsa" | ssh-keygen -t rsa -N "" && \
+	cat /root/.ssh/id_rsa.pub
 #Install supervisor
 RUN easy_install supervisor && \
     mkdir -p /var/log/supervisor && \
