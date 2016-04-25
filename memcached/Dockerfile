@@ -1,4 +1,5 @@
 FROM daocloud.io/library/centos:7
+MAINTAINER Feng <fengit@outlook.com>
 
 RUN yum install memcached -y
 

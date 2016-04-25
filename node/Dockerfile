@@ -1,4 +1,5 @@
 FROM centos:7
+MAINTAINER Feng <fengit@outlook.com>
 
 # 安装 Node
 RUN yum update -y && yum -y install git crontabs python-setuptools &&  \
@@ -17,7 +18,7 @@ RUN mkdir -p ~/git && \
 	npm install hexo-cli -g
 
 # 生成无密码 ssh key
-RUN echo "id_rsa" | ssh-keygen -t rsa -N "" 
+RUN echo "/root/.ssh/id_rsa" | ssh-keygen -t rsa -N "" 
 #&& cat /root/.ssh/id_rsa.pub
 
 #Install supervisor

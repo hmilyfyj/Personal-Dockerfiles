@@ -1,5 +1,5 @@
 FROM daocloud.io/library/centos:7
-MAINTAINER Skiychan <dev@skiy.net>
+MAINTAINER Feng <fengit@outlook.com>
 ##
 # Nginx: 1.9.14
 # PHP  : 7.0.5
