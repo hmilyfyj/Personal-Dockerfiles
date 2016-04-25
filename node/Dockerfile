@@ -1,7 +1,7 @@
 FROM centos:7
 
 # 安装 Node
-RUN yum update -y && yum -y install git crontabs &&  \
+RUN yum update -y && yum -y install git crontabs supervisor &&  \
 	git config --global user.name "fengit" && \
   	git config --global user.email "fengit@outlook.com"
 
@@ -19,6 +19,14 @@ RUN mkdir -p ~/git && \
 RUN echo "id_rsa" | ssh-keygen -t rsa -N "" 
 #&& cat /root/.ssh/id_rsa.pub
 
+# supervior
+RUN mkdir -p /var/log/supervisor && \
+    mkdir -p /var/run/sshd && \
+    mkdir -p /var/run/supervisord
+
+#Add supervisord conf
+ADD supervisord.conf /etc/supervisord.conf
+
 # 共享目录 /data/blog /data/www
 VOLUME ["/data/www", "/data/blog"]
 
@@ -32,9 +40,11 @@ RUN touch /var/spool/cron/root && \
 
 
 # 脚本
-Add hexo.sh /root/hexo.sh
-RUN chmod +x /root/hexo.sh
+ADD hexo.sh /root/hexo.sh
+ADD start.sh /start.sh
+RUN chmod +x /root/hexo.sh && chmod +x /start.sh
 
-USER daemon
+#Start it
+ENTRYPOINT ["/start.sh"]
 
 #ENTRYPOINT ["/root/hexo.sh"]
