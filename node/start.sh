@@ -24,6 +24,6 @@ mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init && git remote add ori
 
 
 #cd /data/blog/hexo_blog/source/_posts && git init && git remote add origin $Hexo_note_url  && yes yes | git pull origin master
-cd /data/blog/hexo_blog/source/_posts && git init && git remote add origin $Hexo_note_url && git pull origin master
+cd /data/blog/hexo/source/_posts && git init && git remote add origin $Hexo_note_url && git pull origin master
 
 /usr/bin/supervisord -n -c /etc/supervisord.conf
