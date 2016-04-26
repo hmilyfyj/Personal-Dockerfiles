@@ -31,6 +31,6 @@ cd /data/blog/hexo/source/_posts && git init && git remote add origin $Hexo_note
 cd /data/blog/hexo && npm install && hexo d -g
 
 #
-mkdir -p /data/www/personal && cd /data/www/personal && git init && git remote add origin $Personal  && git pull origin master
+mkdir -p /data/www/personal && cd /data/www/personal && git init && git remote add origin $Personal  && git pull origin master && chmod +rw /data/www/personal/application/cache
 
 /usr/bin/supervisord -n -c /etc/supervisord.conf
