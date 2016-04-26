@@ -28,7 +28,7 @@ mkdir -p /data/blog/hexo && cd /data/blog/hexo && git init && git remote add ori
 cd /data/blog/hexo/source/_posts && git init && git remote add origin $Hexo_note_url && git pull origin master
 
 # npm install
-cd /data/blog/hexo && npm install && hexo d -g
+cd /data/blog/hexo && nvm use v5.1.0 && npm install && hexo d -g
 
 #
 mkdir -p /data/www/personal && cd /data/www/personal && git init && git remote add origin $Personal  && git pull origin master && chmod +rw /data/www/personal/application/cache

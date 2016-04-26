@@ -17,10 +17,10 @@ RUN yum clean all && yum update -y && \
 RUN mkdir -p ~/git && \
 	cd ~/git && \
 	git clone https://github.com/creationix/nvm.git && \
-	echo "source ~/git/nvm/nvm.sh" >> ~/.bashrc && \
-	echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist" >> ~/.bashrc && \
-	source ~/.bashrc && nvm install v5.1.0 && nvm use v5.1.0 && \
-	echo "nvm use v5.1.0" >> ~/.bashrc && \
+	echo "source ~/git/nvm/nvm.sh" >> /etc/profile && \
+	echo "export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist" >> /etc/profile && \
+	source /etc/profile && nvm install v5.1.0 && nvm use v5.1.0 && \
+	echo "nvm use v5.1.0" >> /etc/profile && \
 	npm install hexo-cli -g
 
 # 生成无密码 ssh key
